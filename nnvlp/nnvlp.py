@@ -191,7 +191,7 @@ class NNVLP(object):
         self.char_embedd_dim = 30
         self.dropout = True
         self.num_filters = 30
-        self.num_units = 30
+        self.num_units = 300
         self.grad_clipping = 5.0
         self.peepholes = True
         self.max_sent_length_pos, self.max_char_length_pos, self.num_labels_pos, self.embedd_dim_pos, \
