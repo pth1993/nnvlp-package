@@ -7,7 +7,7 @@ setup(name='nnvlp',
       author='Hoang Pham',
       author_email='phamthaihoang.hn@gmail.com',
       license='MIT',
-      packages=[''],
+      packages=['nnvlp'],
       install_requires=[
           'pyvi', 'numpy', 'theano', 'lasagne', 'nltk'
       ],
