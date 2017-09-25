@@ -2,3 +2,6 @@
 .idea/*
 nnvlp/embedding/*
 *.pyc
+/dist/
+/*.egg-info
+/*.egg
