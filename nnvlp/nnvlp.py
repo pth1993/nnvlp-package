@@ -20,10 +20,6 @@ embedd_dim = np.shape(embedd_vectors)[1]
 unknown_embedd = np.load(current_dir + '/embedding/unknown.npy')
 
 
-# def download():
-#     subprocess.call(shlex.split("bash embedding.sh"), cwd=current_dir)
-
-
 def load_config(config_file):
     config = dict()
     with codecs.open(config_file + '/config.ini', 'r', 'utf-8') as f:
