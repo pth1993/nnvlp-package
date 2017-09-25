@@ -12,11 +12,11 @@ from pyvi.pyvi import ViTokenizer
 from nltk.tokenize import sent_tokenize
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-embedd_vectors = np.load('embedding/vectors.npy')
-with open(current_dir + '/embedding/words.pl', 'rb') as handle:
-    embedd_words = pickle.load(handle)
-embedd_dim = np.shape(embedd_vectors)[1]
-unknown_embedd = np.load(current_dir + '/embedding/unknown.npy')
+# embedd_vectors = np.load('embedding/vectors.npy')
+# with open(current_dir + '/embedding/words.pl', 'rb') as handle:
+#     embedd_words = pickle.load(handle)
+# embedd_dim = np.shape(embedd_vectors)[1]
+# unknown_embedd = np.load(current_dir + '/embedding/unknown.npy')
 
 
 def download():
@@ -147,7 +147,8 @@ def token_data(raw_texts, max_sent_length):
 def tagging(sents, embedd_vectors, embedd_dim, max_sent_length_pos, max_char_length_pos, alphabet_char_pos,
             predict_fn_pos, alphabet_label_pos, max_sent_length_chunk, max_char_length_chunk, alphabet_char_chunk,
             alphabet_pos_chunk, predict_fn_chunk, alphabet_label_chunk, max_sent_length_ner, max_char_length_ner,
-            alphabet_char_ner, alphabet_pos_ner, alphabet_chunk_ner, predict_fn_ner, alphabet_label_ner):
+            alphabet_char_ner, alphabet_pos_ner, alphabet_chunk_ner, predict_fn_ner, alphabet_label_ner, unknown_embedd,
+            embedd_words):
     pos_words, pos_masks, pos_chars = load_data_pos(sents, unknown_embedd, embedd_words, embedd_vectors, embedd_dim,
                                                     max_sent_length_pos, max_char_length_pos, alphabet_char_pos)
     pos_sents = predict_label(pos_words, pos_masks, pos_chars, predict_fn_pos, alphabet_label_pos)
@@ -189,6 +190,12 @@ def merge_sent(token_texts, poss, chunks, ners, len_texts):
 
 
 class NNVLP(object):
+    embedd_vectors = np.load('embedding/vectors.npy')
+    with open(current_dir + '/embedding/words.pl', 'rb') as handle:
+        embedd_words = pickle.load(handle)
+    embedd_dim = np.shape(embedd_vectors)[1]
+    unknown_embedd = np.load(current_dir + '/embedding/unknown.npy')
+
     def __init__(self):
         self.char_embedd_dim = 30
         self.dropout = True
@@ -229,13 +236,14 @@ class NNVLP(object):
 
     def predict(self, input_text, display_format):
         token_texts, len_texts = token_data(input_text, self.max_sent_length)
-        poss, chunks, ners = tagging(token_texts, embedd_vectors, embedd_dim, self.max_sent_length_pos,
+        poss, chunks, ners = tagging(token_texts, NNVLP.embedd_vectors, NNVLP.embedd_dim, self.max_sent_length_pos,
                                      self.max_char_length_pos, self.alphabet_char_pos, self.predict_fn_pos,
                                      self.alphabet_label_pos, self.max_sent_length_chunk, self.max_char_length_chunk,
                                      self.alphabet_char_chunk, self.alphabet_pos_chunk, self.predict_fn_chunk,
                                      self.alphabet_label_chunk, self.max_sent_length_ner, self.max_char_length_ner,
                                      self.alphabet_char_ner, self.alphabet_pos_ner, self.alphabet_chunk_ner,
-                                     self.predict_fn_ner, self.alphabet_label_ner)
+                                     self.predict_fn_ner, self.alphabet_label_ner, NNVLP.unknown_embedd,
+                                     NNVLP.embedd_words)
         token_texts, poss, chunks, ners = merge_sent(token_texts, poss, chunks, ners, len_texts)
         if display_format == 'JSON':
             return utils.export_json(token_texts, poss, chunks, ners)
