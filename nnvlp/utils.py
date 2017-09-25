@@ -3,7 +3,6 @@ import theano
 import theano.tensor as T
 from alphabet import Alphabet
 import codecs
-from flask import jsonify
 
 MAX_CHAR_LENGTH = 45
 word_end = "##WE##"
@@ -287,7 +286,7 @@ def export_json(token_texts, poss, chunks, ners):
         sent['tokens'] = words
         sents.append(sent)
     output['sentences'] = sents
-    return jsonify(output)
+    return output
 
 
 def export_conll(token_texts, poss, chunks, ners):
