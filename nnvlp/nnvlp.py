@@ -12,7 +12,7 @@ from pyvi.pyvi import ViTokenizer
 from nltk.tokenize import sent_tokenize
 
 current_dir = os.path.dirname(os.path.realpath(__file__))
-subprocess.call(shlex.split("bash embedding.sh"), cwd=current_dir)
+# subprocess.call(shlex.split("bash embedding.sh"), cwd=current_dir)
 embedd_vectors = np.load(current_dir + '/embedding/vectors.npy')
 with open(current_dir + '/embedding/words.pl', 'rb') as handle:
     embedd_words = pickle.load(handle)
