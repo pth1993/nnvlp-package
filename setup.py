@@ -17,7 +17,7 @@ class Downloader(install):
 
 
 setup(name='nnvlp',
-      version='0.1.6',
+      version='0.1.7',
       description='Neural Network-Based Vietnamese Language Processing',
       url='http://github.com/pth1993/nnvlp-package',
       author='Hoang Pham',

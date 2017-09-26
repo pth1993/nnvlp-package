@@ -225,7 +225,7 @@ class NNVLP(object):
         self.max_sent_length = min(self.max_sent_length_pos, self.max_sent_length_chunk, self.max_sent_length_ner)
         self.max_char_length = min(self.max_char_length_pos, self.max_char_length_chunk, self.max_char_length_ner)
 
-    def predict(self, input_text, display_format):
+    def predict(self, input_text, display_format=None):
         token_texts, len_texts = token_data(input_text, self.max_sent_length)
         poss, chunks, ners = tagging(token_texts, embedd_vectors, embedd_dim, self.max_sent_length_pos,
                                      self.max_char_length_pos, self.alphabet_char_pos, self.predict_fn_pos,
@@ -240,3 +240,5 @@ class NNVLP(object):
             return utils.export_json(token_texts, poss, chunks, ners)
         elif display_format == 'CoNLL':
             return utils.export_conll(token_texts, poss, chunks, ners)
+        else:
+            return utils.export_raw(token_texts, poss, chunks, ners)

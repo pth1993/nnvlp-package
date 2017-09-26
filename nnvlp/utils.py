@@ -289,6 +289,15 @@ def export_json(token_texts, poss, chunks, ners):
     return output
 
 
+def export_raw(token_texts, poss, chunks, ners):
+    output = dict()
+    output['token_text'] = token_texts
+    output['pos'] = poss
+    output['chunk'] = chunks
+    output['ner'] = ners
+    return output
+
+
 def export_conll(token_texts, poss, chunks, ners):
     output = ''
     for token_sent, pos_sent, chunk_sent, ner_sent in zip(token_texts, poss, chunks, ners):

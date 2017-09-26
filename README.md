@@ -48,17 +48,42 @@ task respectively.
 The simple way to install **nnvlp** is using pip:
 
 ```sh
-	$ pip install -U nnvlp
+    $ pip install nnvlp
 ```
 ## 3. Usage
 
 ```sh
-	$ import nnvlp
-	$ model = nnvlp.NNVLP()
-	$ output = model.predict(u"Hôm nay tôi ra Hà Nội gặp ông Nam. Ông Nam là giảng viên đại học Bách Khoa.", display_format="CoNLL")
+    >>> import nnvlp
+    >>> model = nnvlp.NNVLP()
+    >>> output = model.predict(u"Hôm nay tôi ra Hà Nội gặp ông Nam. Ông Nam là giảng viên đại học Bách Khoa.")
 ```
 
-At this version, there are two display formats including **CoNLL** and **JSON**
+The default output is a dict that contains **token_text**, **pos**, **chunk**, **ner** attributes. At this version, 
+there are two other display formats including **CoNLL** and **JSON**. If you want to get easy-to-read format, you can use 
+**CoNLL** option.
+
+```sh
+    >>> import nnvlp
+    >>> model = nnvlp.NNVLP()
+    >>> output = model.predict(u"Hôm nay tôi ra Hà Nội gặp ông Nam. Ông Nam là giảng viên đại học Bách Khoa.", display_format="CoNLL")
+    >>> print output
+    1	Hôm_nay		N		B-NP		O
+    2	tôi		P		B-NP		O
+    3	ra		V		B-VP		O
+    4	Hà_Nội		Np		B-NP		B-LOC
+    5	gặp		V		B-VP		O
+    6	ông		Nc		B-NP		O
+    7	Nam		Np		I-NP		B-PER
+    8	.		CH		O		O
+    
+    1	Ông		Nc		B-NP		O
+    2	Nam		Np		I-NP		B-PER
+    3	là		V		B-VP		O
+    4	giảng_viên		N		B-NP		O
+    5	đại_học		N		B-NP		B-ORG
+    6	Bách_Khoa		Np		I-NP		I-ORG
+    7	.		CH		O		O
+```
 
 **Note**: This version works only for MAC OS and Linux environments. Installing **nnvlp** package may take a few minutes 
 because it downloads Vietnamese word embeddings from Internet and installs **NLTK** data if you don't have them installed before.
