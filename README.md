@@ -85,7 +85,7 @@ there are two other display formats including **CoNLL** and **JSON**. If you wan
     7	.		CH		O		O
 ```
 
-**Note**: This version works only for MAC OS and Linux environments. Installing **nnvlp** package may take a few minutes 
+**Note**: This version works only for **MAC OS** and **Linux** environments. Installing **nnvlp** package may take a few minutes 
 because it downloads Vietnamese word embeddings from Internet and installs **NLTK** data if you don't have them installed before.
 
 ## 4. References
