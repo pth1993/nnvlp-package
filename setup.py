@@ -6,13 +6,13 @@ import os
 
 class Downloader(install):
       def run(self):
-            print "Installing lastest Lasagne version"
-            subprocess.call(shlex.split("pip install --upgrade https://github.com/Lasagne/Lasagne/archive/master.zip"))
-            print "Downloading NLTK data..."
-            subprocess.call(shlex.split("python -m nltk.downloader all"))
-            print "Downloading Word Embeddings..."
+            print("Installing latest Lasagne version")
+            subprocess.run("pip install --upgrade https://github.com/Lasagne/Lasagne/archive/master.zip", shell=True)
+            print("Downloading NLTK data...")
+            subprocess.run("python -m nltk.downloader all", shell=True)
+            print("Downloading Word Embeddings...")
             current_dir = os.path.dirname(os.path.realpath(__file__))
-            subprocess.call(shlex.split("bash embedding.sh"), cwd=current_dir+'/nnvlp')
+            subprocess.run("bash embedding.sh", shell=True)
             install.run(self)
 
 

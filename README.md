@@ -66,7 +66,7 @@ there are two other display formats including **CoNLL** and **JSON**. If you wan
     >>> import nnvlp
     >>> model = nnvlp.NNVLP()
     >>> output = model.predict(u"Hôm nay tôi ra Hà Nội gặp ông Nam. Ông Nam là giảng viên đại học Bách Khoa.", display_format="CoNLL")
-    >>> print output
+    >>> print(output)
     1	Hôm_nay		N		B-NP		O
     2	tôi		P		B-NP		O
     3	ra		V		B-VP		O

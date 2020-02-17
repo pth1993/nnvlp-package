@@ -11,4 +11,4 @@ class TestNNVLP(TestCase):
     def test_output(self):
         model = nnvlp.NNVLP()
         output = model.predict(u'Ông Nam là giảng viên trường Bách Khoa.', display_format='JSON')
-        print output
+        print(output)

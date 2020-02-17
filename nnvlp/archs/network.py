@@ -3,7 +3,7 @@ import theano.tensor as T
 import theano
 from lasagne.layers import Gate
 import lasagne.nonlinearities as nonlinearities
-import utils
+from . import utils
 from lasagne import init
 from lasagne.layers import MergeLayer
 

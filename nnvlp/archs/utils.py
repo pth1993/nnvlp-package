@@ -1,7 +1,7 @@
 import numpy as np
 import theano
 import theano.tensor as T
-from alphabet import Alphabet
+from .alphabet import Alphabet
 import codecs
 
 MAX_CHAR_LENGTH = 45
